@@ -8,7 +8,7 @@
 First, install `gulp-clean-json` as a development dependency:
 
 ```shell
-npm install --save-dev git@github.com:ArturKp/gulp-clean-json.git
+npm install --save-dev git://github.com/ArturKp/gulp-clean-json.git#master
 ```
 
 Then, add it to your `gulpfile.js`:
