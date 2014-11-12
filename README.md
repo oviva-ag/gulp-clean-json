@@ -27,14 +27,7 @@ gulp.src("./src/*.ext")
 
 ## API
 
-### clean-json(options)
-
-#### options.msg
-Type: `String`  
-Default: `Hello World`
-
-The message you wish to attach to file.
-
+I use this to remove empty values from translation files before production. Recursive function that checks the nodes for empty values and remomves those.
 
 ## License
 

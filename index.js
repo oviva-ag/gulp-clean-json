@@ -4,6 +4,8 @@ var through = require("through2"),
 module.exports = function (param) {
 	"use strict";
 
+	param = param || {};
+
 	// if necessary check for required param(s), e.g. options hash, etc.
 	if (!param) {
 		throw new gutil.PluginError("gulp-clean-json", "No param supplied");
@@ -37,7 +39,52 @@ module.exports = function (param) {
 
 			// manipulate buffer in some way
 			// http://nodejs.org/api/buffer.html
-			file.contents = new Buffer(String(file.contents) + "\n" + param);
+			var content = JSON.parse(String(file.contents));
+
+			var isEmpty = function (obj) {
+			    for(var prop in obj) {
+			        return false
+			    }
+			    return true;
+			}
+
+			var remove_empty = function ( target ) {
+
+			  Object.keys( target ).map( function ( key ) {
+
+			    if ( target[ key ] instanceof Object ) {
+
+			      if ( ! Object.keys( target[ key ] ).length && typeof target[ key ].getMonth !== 'function') {
+
+			        delete target[ key ];
+
+			      }
+
+			      else {
+
+			        remove_empty( target[ key ] );
+
+			      }
+
+			    }
+
+			    else if ( target[ key ] === null || target[ key ] === '') {
+
+			      delete target[ key ];
+
+			    }
+
+			  } );
+
+			  return target;
+
+			};
+
+			remove_empty( content ); // Let's
+			remove_empty( content ); // Do three
+			remove_empty( content ); // Runs :D
+
+			file.contents = new Buffer(JSON.stringify(content, null, "\t"));
 
 			this.push(file);
 
