@@ -1,5 +1,3 @@
-(PLUGIN AUTHOR: Please read [Plugin README conventions](https://github.com/wearefractal/gulp/wiki/Plugin-README-Conventions), then delete this line)
-
 # gulp-clean-json
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url] [![Dependency Status][depstat-image]][depstat-url]
 
@@ -10,7 +8,7 @@
 First, install `gulp-clean-json` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-clean-json
+npm install --save-dev git@github.com:ArturKp/gulp-clean-json.git
 ```
 
 Then, add it to your `gulpfile.js`:
@@ -19,9 +17,7 @@ Then, add it to your `gulpfile.js`:
 var clean-json = require("gulp-clean-json");
 
 gulp.src("./src/*.ext")
-	.pipe(clean-json({
-		msg: "Hello Gulp!"
-	}))
+	.pipe(clean-json)
 	.pipe(gulp.dest("./dist"));
 ```
 
