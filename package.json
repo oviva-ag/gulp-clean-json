@@ -1,14 +1,14 @@
 
 {
   "name": "gulp-clean-json",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A plugin for Gulp",
   "keywords": [
     "gulpplugin"
   ],
   "author": {
     "name": "Artur Käpp",
-    "email": "",
+    "email": "ArturKp@Gmail.com",
     "url": "https://github.com/ArturKp"
   },
   "repository": "arturkp/gulp-clean-json",
