@@ -1,0 +1,21 @@
+{
+    "hello": "",
+    "some": {
+        "deep": {
+            "another": 5,
+            "like": {
+                "really": {
+                    "deep": {
+                        "thing": ""
+                    }
+                },
+                "a": {
+                    "lot": {
+                        "thing": null,
+                        "maybe": {}
+                    }
+                }
+            }
+        }
+    }
+}

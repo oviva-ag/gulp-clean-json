@@ -6,12 +6,15 @@
   "keywords": [
     "gulpplugin"
   ],
-  "author": {
+  "author": [{
     "name": "Artur Käpp",
     "email": "ArturKp@Gmail.com",
     "url": "https://github.com/ArturKp"
-  },
-  "repository": "arturkp/gulp-clean-json",
+  },{
+    "name": "Thomas Richner",
+    "email": "thomas.richner@oviva.com"
+  }],
+  "repository": "oviva-ag/gulp-clean-json",
   "scripts": {
     "test": "istanbul test _mocha --report html -- test/*.js --reporter spec",
     "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"

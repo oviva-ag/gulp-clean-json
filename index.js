@@ -1,5 +1,5 @@
-var through = require("through2"),
-	gutil = require("gulp-util");
+const through = require("through2");
+const gutil = require("gulp-util");
 
 module.exports = function (param) {
 	"use strict";
@@ -23,11 +23,6 @@ module.exports = function (param) {
 		}
 
 		if (file.isStream()) {
-
-			// http://nodejs.org/api/stream.html
-			// http://nodejs.org/api/child_process.html
-			// https://github.com/dominictarr/event-stream
-
 			// accepting streams is optional
 			this.emit("error",
 				new gutil.PluginError("gulp-clean-json", "Stream content is not supported"));
@@ -48,41 +43,35 @@ module.exports = function (param) {
 			    return true;
 			}
 
-			var remove_empty = function ( target ) {
+			let stripJson = function(node){
+				
+				// leave node?
+				if(node === '' || node === null || node === undefined){
+					return null;
+				}
 
-			  Object.keys( target ).map( function ( key ) {
+				// skip non-objects
+				if(!(node instanceof Object)){
+					return node;
+				}
 
-			    if ( target[ key ] instanceof Object ) {
+				// strip subtrees
+				for(let childKey of Object.keys(node)){
+					let child = node[childKey];
+					child = stripJson(child);
+					if(child === null){
+						delete node[childKey];
+					}
+				}
 
-			      if ( ! Object.keys( target[ key ] ).length && typeof target[ key ].getMonth !== 'function') {
+				if(Object.keys(node).length === 0){
+					return null;
+				}
 
-			        delete target[ key ];
+				return node;
+			}
 
-			      }
-
-			      else {
-
-			        remove_empty( target[ key ] );
-
-			      }
-
-			    }
-
-			    else if ( target[ key ] === null || target[ key ] === '') {
-
-			      delete target[ key ];
-
-			    }
-
-			  } );
-
-			  return target;
-
-			};
-
-			remove_empty( content ); // Let's
-			remove_empty( content ); // Do three
-			remove_empty( content ); // Runs :D
+			content = stripJson(content);
 
 			file.contents = new Buffer(JSON.stringify(content, null, "\t"));
 
