@@ -73,7 +73,9 @@ module.exports = function (param) {
 
 			content = stripJson(content);
 
-			file.contents = new Buffer(JSON.stringify(content, null, "\t"));
+			let space = param.space || null
+			
+			file.contents = new Buffer(JSON.stringify(content, null, space));
 
 			this.push(file);
 
