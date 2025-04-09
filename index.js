@@ -1,5 +1,5 @@
 const through = require("through2");
-const gutil = require("gulp-util");
+const PluginError = require("plugin-error");
 
 module.exports = function (param) {
 	"use strict";
@@ -8,7 +8,7 @@ module.exports = function (param) {
 
 	// if necessary check for required param(s), e.g. options hash, etc.
 	if (!param) {
-		throw new gutil.PluginError("gulp-clean-json", "No param supplied");
+		throw new PluginError("gulp-clean-json", "No param supplied");
 	}
 
 	// see "Writing a plugin"
@@ -25,7 +25,7 @@ module.exports = function (param) {
 		if (file.isStream()) {
 			// accepting streams is optional
 			this.emit("error",
-				new gutil.PluginError("gulp-clean-json", "Stream content is not supported"));
+				new PluginError("gulp-clean-json", "Stream content is not supported"));
 			return callback();
 		}
 
