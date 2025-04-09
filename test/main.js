@@ -4,12 +4,12 @@
 const fs = require("fs");
 const es = require("event-stream");
 const should = require("should");
+const Vinyl = require("vinyl");
 
 require("mocha");
 
 delete require.cache[require.resolve("../")];
 
-const gutil = require("gulp-util");
 const cleanJson = require("../");
 
 describe("gulp-clean-json", function() {
@@ -22,14 +22,14 @@ describe("gulp-clean-json", function() {
 	for (let fn of filenames) {
 		it("should produce expected file `" + fn + "` via buffer", function(done) {
 
-			let srcFile = new gutil.File({
+			let srcFile = new Vinyl({
 				path: "test/fixtures/" + fn,
 				cwd: "test/",
 				base: "test/fixtures",
 				contents: fs.readFileSync("test/fixtures/" + fn)
 			});
 
-			let expectedFile = new gutil.File({
+			let expectedFile = new Vinyl({
 				path: "test/expected/" + fn,
 				cwd: "test/",
 				base: "test/expected",
@@ -61,14 +61,14 @@ describe("gulp-clean-json", function() {
 
 	it("should error on stream", function(done) {
 
-		var expectedFile = new gutil.File({
+		var expectedFile = new Vinyl({
 			path: "test/expected/hello.txt",
 			cwd: "test/",
 			base: "test/expected",
 			contents: fs.readFileSync("test/expected/hello.txt")
 		});
 
-		var srcFile = new gutil.File({
+		var srcFile = new Vinyl({
 			path: "test/fixtures/hello.txt",
 			cwd: "test/",
 			base: "test/fixtures",
